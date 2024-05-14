@@ -387,6 +387,7 @@ impl<'a> JobContext<'a> {
 pub trait State: Sync + Send + 'static + Debug {
     fn name(&self) -> &'static str;
 
+    #[allow(unused)]
     fn is_terminal(&self) -> bool {
         false
     }
@@ -687,6 +688,7 @@ impl StateMachine {
                             )
                             .await;
                             info!(message = "finished state machine", job_id = id);
+                            Ok(())
                         });
                     }
                     Ok(None) => {
